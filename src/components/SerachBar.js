@@ -20,7 +20,7 @@ const SearchBar = ({ onAddCity }) => {
         className="search-input"
       />
       <button type="submit" className="search-btn">
-        Add City
+        Search City
       </button>
     </form>
   );

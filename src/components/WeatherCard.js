@@ -15,7 +15,7 @@ const WeatherCard = ({ weather, unit, lastUpdated, onRemove }) => {
 
       {/* Location */}
       <h2 style={{ marginBottom: "6px", fontWeight: "600" }}>
-        {location.name}, {location.region}
+        {location.name} 
       </h2>
 
       {/* Current Weather */}
