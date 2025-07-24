@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/NavBar";
+import Home from "./pages/Home";
+import Cities from "./pages/Cities";
+import About from "./pages/About";
+import "./styles/WeatherCard.css";
 
 function App() {
+  const [theme, setTheme] = useState("light");
+  const [unit, setUnit] = useState("C");
+
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  const toggleUnit = () => setUnit((u) => (u === "C" ? "F" : "C"));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="min-h-screen">
+        <Navbar setTheme={setTheme} theme={theme} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cities" element={<Cities theme={theme} unit={unit} toggleUnit={toggleUnit} />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
